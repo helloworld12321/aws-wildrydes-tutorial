@@ -25,13 +25,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy the function
-        uses: appleboy/lambda-action@master
-        with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws_region: us-east-1
-          function_name: RequestUnicorn
-          source: lamdba/requestUnicorn.js
-        
+      - name: Install the AWS CLI
+        run: sudo apt-get update && sudo apt-get install awscli
+      - name: Add ~/.aws/credentials and ~/.aws/config
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
+          aws configure set default.region us-east-1
+      - name: Build the ZIP file
+        run: zip requestUnicorn.zip lambda/requestUnicorn.js
+      - name: Deploy the ZIP file to AWS lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name RequestUnicorn \
+            --zip-file fileb://requestUnicorn.zip
