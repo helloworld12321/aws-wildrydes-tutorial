@@ -23,16 +23,8 @@ jobs:
   # Adapted from https://blog.jakoblind.no/aws-lambda-github-actions/
   deploy-request-unicorn:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: lambda
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '14'
-      - name: Zip the function into a bundle
-        run: zip ./requestUnicorn.zip ./requestUnicorn.js
       - name: Deploy the function
         uses: appleboy/lambda-action@master
         with:
@@ -40,4 +32,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: us-east-1
           function_name: RequestUnicorn
-          zip_file: requestUnicorn.zip
+          source: lamdba/requestUnicorn.js
