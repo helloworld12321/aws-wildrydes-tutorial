@@ -33,7 +33,7 @@ jobs:
           aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
           aws configure set default.region us-east-1
       - name: Build the ZIP file
-        run: zip requestUnicorn.zip lambda/requestUnicorn.js
+        run: cp lambda/requestUnicorn.js index.js && zip ../requestUnicorn.zip index.js
       - name: Deploy the ZIP file to AWS lambda
         run: |
           aws lambda update-function-code \
