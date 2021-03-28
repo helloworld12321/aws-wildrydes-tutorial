@@ -13,10 +13,9 @@ jobs:
       # To deploy the client side, we'll push only the `client` directory of
       # this repository to the `github-pages-live` branch.
       - name: Push the client/ folder to the github-pages-live branch
-        uses: NxtLvLSoftware/git-subtree-action@1.1
+        uses: s0/git-publish-subdir-action@v2.4.0
         with:
-          repo: helloworld12321/aws-wildrydes-tutorial
-          branch: github-pages-live
-          path: client
-          deploy_key: ${{ secrets.GH_DEPLOYMENT_KEY }}
-          force: true
+          REPO: self
+          BRANCH: github-pages-live
+          FOLDER: client
+          GITHUB_TOKEN: ${{ secrets.GH_DEPLOYMENT_KEY }}
