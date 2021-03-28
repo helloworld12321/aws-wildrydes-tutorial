@@ -14,7 +14,7 @@ jobs:
       # this repository to the `github-pages-live` branch.
       - name: Push the client/ folder to the github-pages-live branch
         uses: s0/git-publish-subdir-action@v2.4.0
-        with:
+        env:
           REPO: self
           BRANCH: github-pages-live
           FOLDER: client
