@@ -20,7 +20,6 @@ jobs:
           FOLDER: client
           GITHUB_TOKEN: ${{ secrets.GH_DEPLOYMENT_TOKEN }}
   
-  # Adapted from https://blog.jakoblind.no/aws-lambda-github-actions/
   deploy-request-unicorn:
     runs-on: ubuntu-latest
     steps:
