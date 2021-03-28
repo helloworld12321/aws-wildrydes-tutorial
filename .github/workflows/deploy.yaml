@@ -18,4 +18,4 @@ jobs:
           REPO: self
           BRANCH: github-pages-live
           FOLDER: client
-          GITHUB_TOKEN: ${{ secrets.GH_DEPLOYMENT_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GH_DEPLOYMENT_TOKEN }}
