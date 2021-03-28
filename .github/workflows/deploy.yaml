@@ -12,7 +12,8 @@ jobs:
       - uses: actions/checkout@v2
       # To deploy the client side, we'll push only the `client` directory of
       # this repository to the `github-pages-live` branch.
-      - uses: nxtlvlsoftware/git-subtree-action@1
+      - name: Push the client/ folder to the github-pages-live branch
+        uses: NxtLvLSoftware/git-subtree-action@1.1
         with:
           repo: helloworld12321/aws-wildrydes-tutorial
           branch: github-pages-live
