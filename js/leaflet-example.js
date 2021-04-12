@@ -28,7 +28,7 @@ var cityData = cityData || [];
         id: "mapbox/streets-v11",
         tileSize: 512,
         zoomOffset: -1,
-        accessToken: "pk.eyJ1Ijoid2FsYnIwMzciLCJhIjoiY2tuZTBlaHhnMmNpcjJ3bGc4cGJvNW9tNCJ9.2tzm5cKgtdqznvB521ozLQ";
+        accessToken: "pk.eyJ1Ijoid2FsYnIwMzciLCJhIjoiY2tuZTBlaHhnMmNpcjJ3bGc4cGJvNW9tNCJ9.2tzm5cKgtdqznvB521ozLQ",
       }
     ).addTo(myMap);
   }
