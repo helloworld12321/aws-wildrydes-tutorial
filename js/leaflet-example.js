@@ -11,28 +11,24 @@ var cityData = cityData || [];
     addRandomCircuit(cityData, myMap);
   }
 
+
   function addMapboxTiles(myMap) {
-    const accessToken =
-      "pk.eyJ1Ijoid2FsYnIwMzciLCJhIjoiY2tuZTBlaHhnMmNpcjJ3bGc4cGJvNW9tNCJ9.2tzm5cKgtdqznvB521ozLQ";
-
-    let attribution = `
-      Map data &copy;
-      <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
-      contributors,
-      Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>
-    `;
-    attribution = attribution.replace(/\n/, " ").trim();
-
     L.tileLayer(
       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
       {
-        attribution,
+        attribution:
+          `
+            Map data &copy;
+            <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+            contributors,
+            Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>
+          `.replace(/\n/, " ").trim(),
         maxZoom: 18,
         minZoom: 1,
         id: "mapbox/streets-v11",
         tileSize: 512,
         zoomOffset: -1,
-        accessToken,
+        accessToken: "pk.eyJ1Ijoid2FsYnIwMzciLCJhIjoiY2tuZTBlaHhnMmNpcjJ3bGc4cGJvNW9tNCJ9.2tzm5cKgtdqznvB521ozLQ";
       }
     ).addTo(myMap);
   }
@@ -43,7 +39,6 @@ var cityData = cityData || [];
       pointToLayer: (_, latLng) => {
         return new L.CircleMarker(latLng, { radius: 5, color: "#f00" });
       },
-
       // Adds a popup to each city, if popup information exists in the GeoJSON.
       onEachFeature: (feature, geoJsonLayer) => {
         if (feature.properties.popupContent) {
@@ -51,7 +46,6 @@ var cityData = cityData || [];
         }
       },
     };
-
     const cityLayer = L.geoJSON(cityData, geoJsonProcessing).addTo(myMap);
   }
 
@@ -63,7 +57,6 @@ var cityData = cityData || [];
     const path = shuffledCopy(cityCoordinates);
     // Close the path.
     path.push(path[0]);
-
 
     const lineStyle = {
       dashArray: [10, 20],
